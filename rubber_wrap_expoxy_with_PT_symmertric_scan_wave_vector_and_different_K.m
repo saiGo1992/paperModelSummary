@@ -8,16 +8,16 @@ syms x;
 % parametric input
 
 %质量比例
-mass_factor=0.19;
+mass_factor=0.3;
 alpha=0.3;%扫描不同的alpha，即gain/loss因子
 %外弹簧K比例
 K_factor=1;
 K1=1.25;
 K2=1.25;
 M=4;
-m=2;
+m=1;
 %0.227~0.228之间局域共振带隙简并
-G=0.3; %扫描不同的G，即内弹簧劲度系数
+G=0.55; %扫描不同的G，即内弹簧劲度系数
 mag=[];%保存所有频率解的实部
 magf=[];%保存所有频率解的虚部
 
@@ -38,7 +38,7 @@ for e=1:length(K_factor)
                 M_eff_loss = M+m*w_0_loss/(w_0_loss^2-x^2);
                 M_eff_gain = M+m*w_0_gain/(w_0_gain^2-x^2);
                 %扫描波矢
-                w=linspace(-pi,pi);
+                w=linspace(0,pi);
                 %新建画图窗口
 %                 figure;
                 for h=1:length(w)
@@ -51,7 +51,7 @@ for e=1:length(K_factor)
     %                 magf=[magf,omega];
                     for d=1:length(omega)
                         %画实部
-                        plot(w(h)/pi,real(omega(d)),'b*','LineWidth',2,'MarkerSize',2);
+                        plot(w(h)/pi,real(omega(d)),'c*','LineWidth',2,'MarkerSize',2);
                         hold on;
                         %画虚部
 %                         plot(w(h)/pi,imag(omega(d)),'r*','LineWidth',2,'MarkerSize',2);

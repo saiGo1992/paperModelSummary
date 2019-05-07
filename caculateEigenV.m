@@ -8,16 +8,16 @@ syms x;
 % parametric input
 
 %质量比例
-mass_factor=0.15;
-alpha=0.31;%扫描不同的alpha，即gain/loss因子
+mass_factor=0.19;
+alpha=0.3;%扫描不同的alpha，即gain/loss因子
 %外弹簧K比例
 K_factor=1;
-K1=2;
-K2=2;
-M=7;
+K1=1.25;
+K2=1.25;
+M=4;
 m=0.6;
 %0.227~0.228之间局域共振带隙简并
-G=0.5; %扫描不同的G，即内弹簧劲度系数
+G=0.3; %扫描不同的G，即内弹簧劲度系数
 mag=[];%按列保存所有频率
 %magf=[];%保存所有频率解的虚部
 

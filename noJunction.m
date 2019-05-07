@@ -4,7 +4,7 @@ syms x;
 % parametric input
 N=16;%N个超元胞
 
-alpha=0.31;%扫描不同的alpha，即gain/loss因子
+alpha=0.3;%扫描不同的alpha，即gain/loss因子
 % G=0.3; %扫描不同的G，即内弹簧劲度系数
 % m=M*0.13;
 % k1=0.6;
@@ -31,9 +31,9 @@ syms displacement_matrix;
 % w_0_gain = sqrt(2*G*(1.0-alpha*1i)/m);%增益等效本征频率
 % M_0_gain = M+m*(w_0_gain^2/(w_0_gain^2-x^2));
 for d = 1:N/2
-    M=7.0;
+    M=5.0;
     m = M*0.15;
-    G=0.5;
+    G=0.3;
     w_0_loss = sqrt(2*G*(1.0+alpha*1i)/m);%损耗等效本征频率
     M_0_loss = M+m*(w_0_loss^2/(w_0_loss^2-x^2));
     w_0_gain = sqrt(2*G*(1.0-alpha*1i)/m);%增益等效本征频率
@@ -60,9 +60,9 @@ end
 % w_0_gain = sqrt(2*G*(1.0-alpha*1i)/m);%增益等效本征频率
 % M_0_gain = M+m*(w_0_gain^2/(w_0_gain^2-x^2));
 for d = N/2+1:N
-    M=6.0;
+    M=4.0;
     m = M*0.3;
-    G=0.9;
+    G=0.55;
     w_0_loss = sqrt(2*G*(1.0+alpha*1i)/m);%损耗等效本征频率
     M_0_loss = M+m*(w_0_loss^2/(w_0_loss^2-x^2));
     w_0_gain = sqrt(2*G*(1.0-alpha*1i)/m);%增益等效本征频率
@@ -82,8 +82,8 @@ end
 
 % factor_matrix = factor_matrix - displacement_matrix;
 %前半部分矩阵用小的k，后半部分用大的k
-k1=2;
-k2=2;
+k1=1.25;
+k2=1.25;
 
 %扫描相位
 for kk=1:length(w)
@@ -135,10 +135,11 @@ for kk=1:length(w)
     func = det(factor_matrix);
     result = solve(func);
     for n = 1:length(result)
+        if double(real(result(n)))>0
 %         if double(real(result(n)))>0 && double(abs(imag(result(n))))<=0.01
             plot(w(kk)/pi,real(result(n)),'ro','MarkerFaceColor','g','MarkerSize',2);
             hold on;
-%         end
+        end
     end
     fprintf('%f\n',kk);
 end
